@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class AverageWitholdingMarginal {
     public static void main(String[] args) {
-        Scanner scnr = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         
         double income = 0.0;
         boolean validInput = false;
@@ -12,14 +12,14 @@ public class AverageWitholdingMarginal {
         // Input validation loop (max 3 attempts)
         while (attempts < MAX_ATTEMPTS && !validInput) {
             System.out.println("Enter your weekly salary:");
-            String input = scnr.nextLine().trim();
+            String input = sc.nextLine().trim();
             
             try {
                 income = Double.parseDouble(input);
-                if (income >= 0) {
+                if (income > 0) {
                     validInput = true;
                 } else {
-                    System.out.println("Salary must be positive. Please try again.");
+                    System.out.println("Salary must be greater than zero. Please try again.");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid entry. Please enter a valid number.");
@@ -63,15 +63,7 @@ public class AverageWitholdingMarginal {
                 marginalBracket = 10;
             }
             
-            /* Test code for  taxable income per bracket
-            System.out.printf("Total weekly taxable income = $%.2f%n", (bracket1Tax + bracket2Tax + bracket3Tax + bracket4Tax));
-            System.out.printf("Taxable income at 10%%: $%.2f%n", bracket1Tax);
-            System.out.printf("Taxable income at 15%%: $%.2f%n", bracket2Tax);
-            System.out.printf("Taxable income at 20%%: $%.2f%n", bracket3Tax);
-            System.out.printf("Taxable income at 30%%: $%.2f%n", bracket4Tax);
-            */
-            
-            // Convert taxable income to actual tax per bracket
+            // Convert taxable income per bracket to actual tax amounts
             bracket1Tax *= 0.10;
             bracket2Tax *= 0.15;
             bracket3Tax *= 0.20;
@@ -81,16 +73,17 @@ public class AverageWitholdingMarginal {
             double totalIncomeTax = bracket1Tax + bracket2Tax + bracket3Tax + bracket4Tax;
             double averageTaxRate = totalIncomeTax / income;
             double annualIncome = income * 52.0;
-            System.out.printf("Annual income: $%.2f\n", annualIncome);
-            System.out.printf("Estimated total tax burden: $%.2f\n", (totalIncomeTax * 52.0));
-            System.out.printf("Marginal tax rate: %d%%\n", marginalBracket);
-            System.out.printf("Average tax rate: %.2f%%\n", averageTaxRate * 100);
-            System.out.printf("Average weekly tax withholding: $%.2f\n", totalIncomeTax);
+            
+            System.out.printf("Annual income: $%.2f%n", annualIncome);
+            System.out.printf("Estimated total tax burden: $%.2f%n", (totalIncomeTax * 52.0));
+            System.out.printf("Marginal tax rate: %d%%%n", marginalBracket);
+            System.out.printf("Average tax rate: %.2f%%%n", averageTaxRate * 100);
+            System.out.printf("Average weekly tax withholding: $%.2f%n", totalIncomeTax);
             
         } else {
             System.out.println("Too many invalid attempts. Exiting program.");
         }
         
-        scnr.close();
+        sc.close();
     }
 }

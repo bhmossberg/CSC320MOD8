@@ -1,103 +1,103 @@
 import java.util.Random;
 import java.util.Scanner;
+
 public class GetMonthlyTemperatures {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		Random random = new Random();
-		// store the month and temperature in two different arrays for one year
-		String[] months = {
-	            "January", "February", "March", "April", "May", "June",
-	            "July", "August", "September", "October", "November", "December"
-	    };
-		double[] temps = new double[12];
-		// use Random to generate the temperature data for illustration purposes
-		for (int i = 0; i < 12; i++) {
-            temps[i] = 20.0 + random.nextDouble() * 65.0;  // random between 20 and 85 rounded to 1 decimal place
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Random random = new Random();
+
+        // Month names and temperature array
+        String[] months = {
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        };
+        double[] temps = new double[12];
+
+        // Generate random temperatures (20.0°F to 85.0°F, 1 decimal place)
+        for (int i = 0; i < 12; i++) {
+            temps[i] = 20.0 + random.nextDouble() * 65.0;
             temps[i] = Math.round(temps[i] * 10.0) / 10.0;
         }
-		System.out.println("|===========================================|");
-		System.out.println("|==========Get Monthly Temperature==========|");
-		System.out.println("|===========================================|");
-		// main program loop: prompt the user for the month/year 
-		int attempts = 0;
-		int maxAttempts = 3;
-		while (true) {
-			++attempts;
-			if (attempts > maxAttempts) {
-				System.out.println("Goodbye");
-				break;
-			}
-			System.out.println("Enter month name to be viewed or 'year' to see all data. ");
-			System.out.println("Type 'quit' to exit.");
-			String input = sc.nextLine().trim();
-			boolean found = false; //evaluate invalid input
-	        // check for 'quit'
-			if (input.equalsIgnoreCase("quit")) {
-				System.out.print(("Goodbye"));
-				break;
-			}
-			/*If "year" is entered display: 
-				temperature for each month 
-			  	yearly average 
-			  	highest month temp 
-			  	lowest month temp
-			*/
-	        else if (input.equalsIgnoreCase("year")) {
-				found = true; //flag successful input
-				attempts = 0;
-				double sum = 0.0;
-				// initialize high and low to [0] for iterative comparison
-		        double highest = temps[0];
-		        double lowest = temps[0];
-		        // index to track position of high/low
-		        int highIndex = 0;
-		        int lowIndex = 0;
 
-		        System.out.println("\nFull Year Temperature Data:");
-		        // iterate through months to generate high, low, average
-		        for (int i = 0; i < 12; i++) {
-		        	// display each month with temperature
-		            System.out.printf("%-10s: %.1f°F%n", months[i], temps[i]);
-		            // build sum for calculating average
-		            sum += temps[i];
-		            // find high temperature
-		            if (temps[i] > highest) {
-		                highest = temps[i];
-		                highIndex = i;
-		            }
-		            // find low temperature
-		            if (temps[i] < lowest) {
-		                lowest = temps[i];
-		                lowIndex = i;
-		            }
-		        }
-		        // calculate average
-		        double yearlyAverage = sum / 12.0;
-		   
-		        System.out.println();
-		        System.out.printf("Yearly Average: %.1f°F%n", yearlyAverage);
-		        System.out.printf("Highest monthly average: %.1f°F (%s)%n", highest, months[highIndex]);
-		        System.out.printf("Lowest monthly average: %.1f°F (%s)%n", lowest, months[lowIndex]);
-		        System.out.println();   
-		    }
-				
-			//search for month and output data
-			else {
-				for (int i = 0; i < months.length; i++) {
-					if (months[i].equalsIgnoreCase(input)) {
-						System.out.printf("%s: %.1f°F%n", months[i], temps[i]);
-	                    found = true; // flag valid input
-	                    attempts = 0; //reset invalid attempts
-	                    break; // avoid continued iterating after successful match
-	                }
-				}
-			}
-			// invalid attempt error message with cumulative feedback
-	        if ((!found)){
-	            System.out.printf("Invalid input. %d of %d unsuccessful attempts.\n", attempts, maxAttempts); 
-	        }
-		}
-		sc.close();		
-	}
+        System.out.println("|===========================================|");
+        System.out.println("|==========Get Monthly Temperature==========|");
+        System.out.println("|===========================================|");
 
+        int attempts = 0;
+        final int MAX_ATTEMPTS = 3;
+
+        while (true) {
+            System.out.println("\nEnter month name to be viewed or 'year' to see all data.");
+            System.out.println("Type 'quit' to exit.");
+
+            String input = sc.nextLine().trim();
+
+            // Handle quit - Improved: Consistent message and clean break
+            if (input.equalsIgnoreCase("quit")) {
+                System.out.println("Goodbye");
+                break;
+            }
+
+            boolean found = false;
+
+            // Handle "year" request
+            if (input.equalsIgnoreCase("year")) {
+                found = true;
+                attempts = 0;  // Reset attempts on valid input
+
+                double sum = 0.0;
+                double highest = temps[0];
+                double lowest = temps[0];
+                int highIndex = 0;
+                int lowIndex = 0;
+
+                System.out.println("\nFull Year Temperature Data:");
+                for (int i = 0; i < 12; i++) {
+                    System.out.printf("%-10s: %.1f°F%n", months[i], temps[i]);
+                    sum += temps[i];
+
+                    if (temps[i] > highest) {
+                        highest = temps[i];
+                        highIndex = i;
+                    }
+                    if (temps[i] < lowest) {
+                        lowest = temps[i];
+                        lowIndex = i;
+                    }
+                }
+
+                double yearlyAverage = sum / 12.0;
+                System.out.printf("%nYearly Average: %.1f°F%n", yearlyAverage);
+                System.out.printf("Highest monthly average: %.1f°F (%s)%n", highest, months[highIndex]);
+                System.out.printf("Lowest monthly average: %.1f°F (%s)%n", lowest, months[lowIndex]);
+            }
+            // Handle specific month
+            else {
+                for (int i = 0; i < months.length; i++) {
+                    if (months[i].equalsIgnoreCase(input)) {
+                        System.out.printf("%s: %.1f°F%n", months[i], temps[i]);
+                        found = true;
+                        attempts = 0;            // Reset attempts on valid input
+                        break;
+                    }
+                }
+            }
+
+            // Invalid input handling improvement
+            // Attempts now only increment on failure rather than relying on reset
+            // Cleaner logic with early exit instead of fragile top-of-loop counter
+            if (!found) {
+                attempts++;
+                if (attempts >= MAX_ATTEMPTS) {
+                    System.out.println("Too many invalid attempts. Goodbye.");  // Consistent message
+                    break;
+                } else {
+                    System.out.printf("Invalid input. %d of %d unsuccessful attempts.%n",
+                                    attempts, MAX_ATTEMPTS);
+                }
+            }
+        }
+
+        sc.close();   // Proper resource cleanup
+    }
 }

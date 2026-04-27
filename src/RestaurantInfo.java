@@ -1,9 +1,12 @@
 public class RestaurantInfo {
-
 	public static void main(String[] args) {
-        System.out.println("Casa Bonita");
-        System.out.println("6715 W Colfax Ave");
-        System.out.println("Lakewood, CO 80214");
+    	String restaurantName = "Casa Bonita";
+    	String restaurantStreetAddress = "6715 W Colfax Ave";
+    	String restaurantCityStateZip = "Lakewood, CO 80214";
+    	
+    	System.out.printf("%s%n%s%n%s%n", 
+    			restaurantName, 
+    			restaurantStreetAddress, 
+    			restaurantCityStateZip);
 	}
-
 }
