@@ -1,0 +1,8 @@
+Dealership Vehicle Inventory
+============================
+
+Make: Toyota
+Model: Land Cruiser
+Color: Silver
+Year: 2025
+Mileage: 2300 miles

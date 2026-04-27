@@ -1,6 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class AutomobileInventory {
@@ -115,24 +116,23 @@ public class AutomobileInventory {
 
     // Helper method to write vehicle info to file
     private static void printToFile(Automobile myCar) {
-        String filePath = "Autos.txt";   // Saves in current folder (portable)
+    String filePath = "Autos.txt";
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write("Dealership Vehicle Inventory");
-            writer.newLine();
-            writer.write("============================");
-            writer.newLine();
-            writer.newLine();
+    try (PrintWriter pw = new PrintWriter(new FileWriter(filePath))) {
+        
+        pw.println("Vehicle Data Sheet");
+        pw.println("============================");
+        pw.println();
 
-            String[] details = myCar.listVehicleInformation();
-            for (String line : details) {
-                writer.write(line);
-                writer.newLine();
-            }
-
-            System.out.println("Success: Vehicle information written to " + filePath);
-        } catch (IOException e) {
-            System.out.println("Failure: Could not write to file. Error: " + e.getMessage());
+        String[] details = myCar.listVehicleInformation();
+        for (String line : details) {
+            pw.println(line);
         }
+
+        System.out.println("Success: Vehicle information written to " + filePath);
+        
+    } catch (IOException e) {
+        System.out.println("Failure: Could not write to file. Error: " + e.getMessage());
     }
+}
 }
