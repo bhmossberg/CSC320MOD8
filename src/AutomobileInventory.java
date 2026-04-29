@@ -94,7 +94,8 @@ public class AutomobileInventory {
             System.out.println();
             
             // printing to file demonstration
-            System.out.print("Would you like to print the vehicle information to a file? (Y/N): ");
+            System.out.println("Would you like to print the following vehicle information to a file? (Y/N): ");
+            System.out.println(myCar.getFullInfo());
             String response = scanner.nextLine().trim().toUpperCase();
 
             if (response.equals("Y")) {
@@ -110,7 +111,11 @@ public class AutomobileInventory {
         }
     }
 
-    // Helper method to write vehicle info to file
+    /**
+     * Method using PrintWriter and FileWriter to generate Autos.txt in current directory
+     * Inputs existing vehicle object to pull private attributes
+     * @param myCar
+     */
     private static void printToFile(Automobile myCar) {
         String filePath = "Autos.txt";
 

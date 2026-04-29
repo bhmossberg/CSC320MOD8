@@ -116,6 +116,6 @@ public class Automobile {
      * @return CSV-style string of vehicle data
      */
     public String getFullInfo() {
-        return make + "," + model + "," + color + "," + year + "," + mileage;
+        return this.make + "," + this.model + "," + this.color + "," + this.year + "," + this.mileage;
     }
 }
