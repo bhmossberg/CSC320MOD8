@@ -4,7 +4,7 @@
 	 * for managing individual vehicle records.
 	 * 
 	 * @author Benjamin Mossberg
-	 * @version 1.1
+	 * @version 1.2
 	 */
 public class Automobile {
 
@@ -72,11 +72,11 @@ public class Automobile {
     public String[] listVehicleInformation() {
         try {
             return new String[]{
-                "Make: " + make,
-                "Model: " + model,
-                "Color: " + color,
-                "Year: " + year,
-                "Mileage: " + mileage + " miles"
+                "Make: " + this.make,
+                "Model: " + this.model,
+                "Color: " + this.color,
+                "Year: " + this.year,
+                "Mileage: " + this.mileage + " miles"
             };
         } catch (Exception e) {
             return new String[]{"Error retrieving vehicle info."};

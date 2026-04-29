@@ -6,12 +6,15 @@ import java.util.Scanner;
 public class AutomobileInventory {
 
     public static void main(String[] args) {
-        /* For the sake of demonstration this program automatically executes each of the
+        /** For the sake of demonstration this program automatically executes each of the
          * crucial methods required to run the Inventory. Methods are pre-loaded with
          * parameters and will therefore only return successful result messages.
          * In a true inventory unique Automobile objects would be created and destroyed,
          * but for the purposes of this exercise only one Automobile instance will be
          * created and modified.
+         * 
+         * @author Benjamin Mossberg
+         * @version 1.2
          */
         Scanner scanner = new Scanner(System.in);
         Automobile myCar = null;
@@ -36,9 +39,8 @@ public class AutomobileInventory {
             }
             System.out.println();
             
-            /* remove vehicle really just erases attributes of a given Automobile object
-             * alternatively, the object itself could be removed via objectName = null or
-             * marked inactive
+            /** 
+             * Demonstration of removeVehicle() erases attributes of a given Automobile object instance
              */
             System.out.println("Step 3: Erasing current vehicle from inventory using removeVehicle() method");
             System.out.print("Press Enter to continue");
@@ -51,7 +53,8 @@ public class AutomobileInventory {
             //}
             //System.out.println();
             
-            /* add a new vehicle just overrides values for the existing object since this program
+            /** 
+             * This method overrides private attributes existing object since this program
              * does not feature an Arraylist of vehicles
              */
          
@@ -61,7 +64,9 @@ public class AutomobileInventory {
             String addResult = myCar.addNewVehicle("Honda", "Accord", "Black", 2023, 12500);
             System.out.println(addResult + "\n");
             
-            // Step 5: List updated vehicle
+            /**
+             * Method demonstration of listVehicleInformation
+             */		
             System.out.println("Step 5: Displaying updated vehicle information");
             System.out.print("Press Enter to continue");
             scanner.nextLine();
