@@ -1,8 +1,28 @@
-Vehicle Data Sheet
+Automobile Inventory
 ============================
+Total Vehicles: 4
 
 Make: Toyota
-Model: Land Cruiser
+Model: Camry
 Color: Silver
-Year: 2025
-Mileage: 2300 miles
+Year: 2022
+Mileage: 45200 miles
+-----------------------------------
+Make: Toyota
+Model: Camry
+Color: Silver
+Year: 2022
+Mileage: 45200 miles
+-----------------------------------
+Make: 
+Model: 
+Color: 
+Year: 0
+Mileage: 0 miles
+-----------------------------------
+Make: Toyota
+Model: Camry
+Color: Silver
+Year: 2022
+Mileage: 45200 miles
+-----------------------------------
